@@ -1,35 +1,55 @@
-# Week 1 — Cyber Threat Intelligence Fundamentals
-
-**Tasks:** Create a glossary of key CTI terms · Classify threat types and their sources
-
-## 1. Glossary of Key CTI Terms (applied to Meduza Stealer)
-
-| Term | Definition | Relevance to Meduza Stealer |
-|---|---|---|
-| **IOC (Indicator of Compromise)** | A forensic artifact (hash, IP, domain, registry key) suggesting a system has been compromised | Meduza C2 IPs, file hashes (MD5/SHA1/SHA256), dropped file names |
-| **TTP (Tactics, Techniques, Procedures)** | The behavioral patterns an attacker/malware uses | Geofencing check, Defender exclusion via PowerShell, browser credential theft |
-| **MaaS (Malware-as-a-Service)** | Malware sold/rented as a subscription product with a management console | Meduza is sold with monthly/lifetime plans and a stealer admin panel |
-| **Stealer / Infostealer** | Malware designed to exfiltrate stored credentials and sensitive data rather than encrypt or destroy | Meduza's entire purpose — no ransomware component |
-| **C2 (Command and Control)** | Server infrastructure used by the attacker to control malware and receive stolen data | Meduza checks C2 reachability before activating; exfiltrates loot here |
-| **Dropper / Loader** | A file whose job is to deliver and execute the real payload | Game-cheat `.exe` / cracked installer that drops the Meduza payload |
-| **Geofencing (malware)** | Malware logic that checks victim location and halts execution in excluded regions | Meduza excludes CIS countries (RU, KZ, BY, GE, TM, UZ, AM, KG, MD, TJ) |
-| **Exfiltration** | The unauthorized transfer of data out of a victim system | Meduza packages stolen browser/wallet data and uploads it to its C2 |
-| **OSINT** | Open Source Intelligence — information gathered from publicly available sources | Used in Week 2 to pull Meduza IOCs from VirusTotal, ThreatFox, any.run |
-| **ATT&CK Technique** | A specific method mapped in the MITRE ATT&CK framework | e.g., T1555 (Credentials from Password Stores), T1082 (System Info Discovery) |
-
-## 2. Threat Classification
-
-| Attribute | Assessment |
-|---|---|
-| **Threat category** | Commodity malware — Information Stealer (non-destructive, financially motivated) |
-| **Delivery vector** | Social engineering via fake game cheats / cracks / "free" tool downloads (YouTube video descriptions, Discord servers, cheat forums, cracked-software sites) |
-| **Threat actor type** | Cybercriminal MaaS operator + independent affiliates/customers who buy access |
-| **Motivation** | Financial — stolen credentials and wallets are resold or drained; access itself is sold as a subscription |
-| **Target platform** | Windows desktop users, primarily gamers/PC enthusiasts searching for cheats |
-| **Sophistication** | Low-to-moderate — binary is largely unobfuscated per public analyses, but detection rates by AV are historically poor |
-| **Source of intel used** | Vendor write-ups (Uptycs, Wazuh, SOC Prime), sandbox reports (any.run), IOC feeds (ThreatFox/abuse.ch) |
-
-## Screenshots
-
-<!-- Place this week's screenshots in this same folder (week1/) and reference them below, e.g.: -->
-<!-- ![Glossary whiteboard](glossary.png) -->
+Week 1 — Cyber Threat Intelligence Fundamentals
+1.1 Project Topic
+Meduza Stealer is an information-stealing malware family. For this project, we focus
+on threat intelligence that can help identify and investigate indicators associated
+with the malware.
+The main types of information that can be useful for our research include:
+file hashes
+domains
+IP addresses
+URLs
+malware samples
+detection information
+relationships between different indicators
+![Meduza Stealer information](meduza-info.png)
+Figure 1. Public information about Meduza Stealer.
+1.2 CTI Glossary
+During Week 1, we created a small glossary of important Cyber Threat Intelligence terms.
+Term	Definition
+CTI	Cyber Threat Intelligence is information about cyber threats that can support security investigations and decision-making.
+IOC	Indicator of Compromise is an artifact that may indicate malicious activity.
+TTP	Tactics, Techniques and Procedures describe how an attacker operates.
+Malware	Software designed to perform malicious actions.
+Threat Actor	A person or group responsible for malicious cyber activity.
+OSINT	Open-Source Intelligence collected from publicly available sources.
+Enrichment	Adding additional information to an existing indicator.
+Correlation	Connecting different pieces of information to identify relationships.
+Hash	A value used to identify a file or other digital object.
+C2	Command and Control infrastructure used for communication with compromised systems.
+![CTI glossary source](cti-glossary-source.png)
+Figure 2. Source used to study CTI terminology.
+1.3 Types of Cyber Threat Intelligence
+CTI can be organized into different types depending on its purpose and level of detail.
+Strategic Intelligence — provides a high-level view of cyber threats. It can be used
+to understand general trends, risks, and the possible impact of threats.
+Operational Intelligence — focuses on information about attacks, campaigns, and
+threat activity.
+Tactical Intelligence — describes attacker behavior and techniques. It can help
+security teams understand how attacks are performed.
+Technical Intelligence — contains technical indicators such as hashes, domains, IP
+addresses, URLs, and other artifacts.
+For our Meduza Stealer project, technical intelligence is particularly useful because
+our research requires working with concrete indicators.
+![Types of CTI](cti-types.png)
+Figure 3. Classification of Cyber Threat Intelligence.
+1.4 CTI Sources
+For the project, we identified several types of sources that can provide threat
+intelligence.
+Source type	Example	Information
+OSINT	OSINT Framework	Publicly available information
+Malware analysis	VirusTotal	File and URL information
+Security research	SANS resources	Research and security reports
+Threat intelligence platform	MISP	Indicators and threat intelligence
+Public reports	Security blogs/reports	Malware and campaign information
+![Example of a CTI source](cti-source-example.png)
+Figure 4. Example of a publicly available threat intelligence source.
